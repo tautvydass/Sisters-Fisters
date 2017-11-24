@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerInputConfiguration : ScriptableObject
 {
 	public string Horizontal;
+	public string LookHorizontal;
+	public string LookVertical;
 	public string Jump;
 	public string Fist;
 }

@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 
 	private List<Collider2D> colliders = new List<Collider2D>();
 
+	private Vector2 fistDirection = Vector2.zero;
+
 	public Player Init(PlayerInputConfiguration input)
 	{
 		PlayerInputConfiguration = input;
@@ -37,8 +39,11 @@ public class Player : MonoBehaviour
 		if(!receiveInput) return;
 
 		CheckHorizontal();
+		CheckFistDirection();
 		CheckJump();
 		CheckFist();
+
+		Debug.DrawLine(transform.position, transform.position + (Vector3)fistDirection * 3, Color.red);
 	}
 
 	private void CheckHorizontal()
@@ -74,7 +79,10 @@ public class Player : MonoBehaviour
 	}
 	private void Move(float direction) =>
 		Rigidbody.velocity += Vector2.right * direction * speed;
-		
+	
+	private void CheckFistDirection() =>
+		fistDirection = (new Vector2(Input.GetAxis(PlayerInputConfiguration.LookHorizontal), -Input.GetAxis(PlayerInputConfiguration.LookVertical))).normalized;
+
 	private bool IsGrounded() =>
 		colliders.Count != 0;
 
