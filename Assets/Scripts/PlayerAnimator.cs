@@ -8,6 +8,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private const string AnimatorProp_IsMovingRight = "IsMovingRight";
     private const string AnimatorProp_IsRunning = "IsRunning";
+    private const string AnimatorProp_IsInAir = "IsInAir";
 
     void Start ()
     {
@@ -26,13 +27,19 @@ public class PlayerAnimator : MonoBehaviour
         // m_Animator.SetBool(AnimatorProp_IsMovingRight, true);
     }
 
-    public void StartRunning()
+    public bool IsRunning
     {
-        m_Animator.SetBool(AnimatorProp_IsRunning, true);
+        set
+        {
+            m_Animator.SetBool(AnimatorProp_IsRunning, value);
+        }
     }
 
-    public void StopRunning()
+    public bool IsInAir
     {
-        m_Animator.SetBool(AnimatorProp_IsRunning, false);
+        set
+        {
+            m_Animator.SetBool(AnimatorProp_IsInAir, value);
+        }
     }
 }
