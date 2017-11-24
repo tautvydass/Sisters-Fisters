@@ -291,7 +291,7 @@ InputManager:
     snap: 1
     invert: 0
     type: 2
-    axis: 7
+    axis: 0
     joyNum: 1
   - serializedVersion: 3
     m_Name: Player1Left
@@ -314,7 +314,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: space
+    positiveButton: joystick button 0
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -324,7 +324,7 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: Player1Fist
     descriptiveName: 

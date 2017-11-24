@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	private enum Movement
+	{
+		Left,
+		Right,
+		Idle
+	}
+
 	public PlayerInputConfiguration PlayerInputConfiguration { get; private set; }
 
 	public float speed = 10;
 	public float jumpForce = 4;
 	public float FistForce { get; private set; }
 	public Rigidbody2D Rigidbody { get; private set; }
-	
-	private ConstantForce2D movementForce;
 
 	private bool receiveInput = false;
-	private bool moving = false;
+	
+	private Movement movement = Movement.Idle;
+
+	private List<Collider2D> colliders = new List<Collider2D>();
 
 	public Player Init(PlayerInputConfiguration input)
 	{
-		movementForce = GetComponent<ConstantForce2D>();
 		PlayerInputConfiguration = input;
 		receiveInput = true;
 		Rigidbody = GetComponent<Rigidbody2D>();
@@ -37,16 +44,40 @@ public class Player : MonoBehaviour
 	private void CheckHorizontal()
 	{
 		var value = Input.GetAxis(PlayerInputConfiguration.Horizontal);
-		if(Mathf.Abs(value) < 0.2f) value = 0;
-		Move(value == 0 ? 0 : Mathf.Sign(value));
+		if(Mathf.Abs(value) != 1)
+		{
+			if(movement == Movement.Idle) return;
+			if(movement == Movement.Left)
+				Move(1);
+			else if(movement == Movement.Right)
+				Move(-1);
+			movement = Movement.Idle;
+		}
+		else if(value == 1)
+		{
+			if(movement == Movement.Right) return;
+			if(movement == Movement.Left)
+				Move(2);
+			else if(movement == Movement.Idle)
+				Move(1);
+			movement = Movement.Right;
+		}
+		else if(value == -1)
+		{
+			if(movement == Movement.Left) return;
+			if(movement == Movement.Right)
+				Move(-2);
+			else if(movement == Movement.Idle)
+				Move(-1);
+			movement = Movement.Left;
+		}
 	}
 	private void Move(float direction) =>
-		movementForce.force = Vector2.right * direction * speed;
+		Rigidbody.velocity += Vector2.right * direction * speed;
 		
-	private bool IsGrounded()
-	{
-		return true;
-	}
+	private bool IsGrounded() =>
+		colliders.Count != 0;
+
 	private void CheckJump()
 	{
 		if(Input.GetButtonDown(PlayerInputConfiguration.Jump))
@@ -58,5 +89,17 @@ public class Player : MonoBehaviour
 	private void CheckFist()
 	{
 
+	}
+
+	private void OnTriggerEnter2D(Collider2D collider)
+	{
+		if(collider.tag != "Ground") return;
+		if(colliders.Contains(collider)) return;
+
+		colliders.Add(collider);
+	}
+	private void OnTriggerExit2D(Collider2D collider)
+	{
+		colliders.Remove(collider);
 	}
 }
