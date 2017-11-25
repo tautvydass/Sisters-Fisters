@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class CharacterSelection : MonoBehaviour
 {
@@ -40,20 +41,23 @@ public class CharacterSelection : MonoBehaviour
 
 	public Character character { get; private set; }
 
+	private Action lockInCallback;
+
 	public void SetPosition(Vector2 position)
 	{
 		GetComponent<RectTransform>().localPosition = position;
 	}
 
-	public CharacterSelection Initialize(int playerIndex, PlayerInputConfiguration input)
+	public CharacterSelection Initialize(int playerIndex, PlayerInputConfiguration input, Action lockInCallback)
 	{
 		text.sprite = playerTexts[playerIndex];
-		selectedPlayer = Random.Range(0, 4);
+		selectedPlayer = UnityEngine.Random.Range(0, 4);
 		Select();
 		active = true;
 		this.input = input;
 		audioSource = GameObject.FindGameObjectWithTag("CSManager").GetComponent<AudioSource>();
 		audioSource.PlayOneShot(joinClip, 1f);
+		this.lockInCallback = lockInCallback;
 		return this;
 	}
 
@@ -108,7 +112,7 @@ public class CharacterSelection : MonoBehaviour
 
 	private void SelectionSound()
 	{
-		audioSource.PlayOneShot(selectClips[Random.Range(0, selectClips.Count)], 0.8f);
+		audioSource.PlayOneShot(selectClips[UnityEngine.Random.Range(0, selectClips.Count)], 0.8f);
 	}
 
 	private void LockIn()
@@ -120,6 +124,7 @@ public class CharacterSelection : MonoBehaviour
 		DisablePlayers();
 		LockInSound();
 		character = (Character)selectedPlayer;
+		lockInCallback();
 	}
 	private void LockInSound()
 	{
@@ -136,5 +141,19 @@ public class CharacterSelection : MonoBehaviour
 				var transf = players[i].GetComponent<RectTransform>();
 				transf.localPosition = new Vector2(-10, transf.localPosition.y);
 			}
+	}
+
+	public PlayerInfo GetInfo() =>
+		new PlayerInfo(character, input);
+
+	public class PlayerInfo
+	{
+		public Character character { get; private set; }
+		public PlayerInputConfiguration input { get; private set; }
+		public PlayerInfo(Character character, PlayerInputConfiguration input)
+		{
+			this.character = character;
+			this.input = input;
+		}
 	}
 }

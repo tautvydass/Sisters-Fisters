@@ -276,11 +276,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224460357183914580, guid: 6193485e32ef74447b58e11dd2be8a94,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 1986062396357426, guid: 6193485e32ef74447b58e11dd2be8a94, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -370,8 +365,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 402717966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 360, y: 202.5, z: 0}
-  m_LocalScale: {x: 0.375, y: 0.375, z: 0.375}
+  m_LocalPosition: {x: 346.5, y: 195, z: 0}
+  m_LocalScale: {x: 0.3610243, y: 0.3610243, z: 0.3610243}
   m_Children:
   - {fileID: 954177281}
   - {fileID: 1773678894}
@@ -823,6 +818,26 @@ Prefab:
       propertyPath: fadeAnimator
       value: 
       objectReference: {fileID: 414793298}
+    - target: {fileID: 114574604071392660, guid: 6d26450a2aa753a439a7d4b84b5ab8a5,
+        type: 2}
+      propertyPath: countdownColor.r
+      value: 0.94847864
+      objectReference: {fileID: 0}
+    - target: {fileID: 114574604071392660, guid: 6d26450a2aa753a439a7d4b84b5ab8a5,
+        type: 2}
+      propertyPath: countdownColor.g
+      value: 0.066176474
+      objectReference: {fileID: 0}
+    - target: {fileID: 114574604071392660, guid: 6d26450a2aa753a439a7d4b84b5ab8a5,
+        type: 2}
+      propertyPath: countdownColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114574604071392660, guid: 6d26450a2aa753a439a7d4b84b5ab8a5,
+        type: 2}
+      propertyPath: countdownColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d26450a2aa753a439a7d4b84b5ab8a5, type: 2}
   m_IsPrefabParent: 0
@@ -925,7 +940,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- Press A To Join -'
+  m_Text: '- Press ''A'' To Join And Lock In -'
 --- !u!222 &1773678898
 CanvasRenderer:
   m_ObjectHideFlags: 0

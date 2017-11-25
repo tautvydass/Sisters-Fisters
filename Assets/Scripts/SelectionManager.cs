@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -14,18 +15,24 @@ public class SelectionManager : MonoBehaviour
 	[SerializeField]
 	private GameObject joinText;
 	[SerializeField]
+	private Color countdownColor;
+	private Color defaultColor;
+	[SerializeField]
 	private Animator fadeAnimator;
 	private List<CharacterSelection> characters;
 
 	private bool[] active = new bool[]{ false, false, false, false };
 
 	private int count = 0;
+	private int lockedInCount = 0;
 
 	private bool started = false;
+	private bool countdown = false;
 
 	private void Start()
 	{
 		characters = new List<CharacterSelection>();
+		defaultColor = joinText.GetComponent<Text>().color;
 		SceneManager.UnloadSceneAsync("Splash");
 		StartCoroutine(FadeIn(0.5f));
 	}
@@ -35,6 +42,43 @@ public class SelectionManager : MonoBehaviour
 		yield return new WaitForSeconds(transitionTime);
 		started = true;
 		fadeAnimator.enabled = false;
+	}
+
+	private void OnLockIn()
+	{
+		lockedInCount++;
+		if(lockedInCount == count && count > 1 && !countdown)
+		{
+			countdown = true;
+			StartCoroutine(InitCountdown());
+		}
+	}
+
+	private void OnJoined()
+	{
+		if(countdown)
+		{
+			StopCoroutine(InitCountdown());
+			var field = joinText.GetComponent<Text>();
+			field.text = "- Press 'A' To Join And Lock In -";
+			field.color = defaultColor;
+			countdown = false;
+			joinText.GetComponent<Animator>().enabled = true;
+		}
+	}
+
+	private IEnumerator InitCountdown()
+	{
+		var field = joinText.GetComponent<Text>();
+		field.color = countdownColor;
+		joinText.GetComponent<Animator>().enabled = false;
+		for(int i = 10; i > 0; i--)
+		{
+			if(!countdown) break;
+			field.text = $"- Match Starting In { i } -";
+			yield return new WaitForSeconds(1);
+		}
+		// Load map
 	}
 
 	private void Update()
@@ -47,12 +91,13 @@ public class SelectionManager : MonoBehaviour
 				{
 					var selection = Instantiate(characterSelectionPrefab, parent);
 					var positions = new SelectionPositions(++count);
-					characters.Add(selection.GetComponent<CharacterSelection>().Initialize(count - 1, playerInputs[i]));
+					characters.Add(selection.GetComponent<CharacterSelection>().Initialize(count - 1, playerInputs[i], OnLockIn));
 					for(int ind = 0; ind < characters.Count; ind++)
 						characters[ind].SetPosition(positions.positions[ind]);
 					active[i] = true;
 					if(count == 4)
 						joinText.SetActive(false);
+					OnJoined();
 				}
 	}
 
