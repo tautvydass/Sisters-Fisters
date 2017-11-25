@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4125360686676198}
   - component: {fileID: 198303891826363182}
+  - component: {fileID: 114561468904243550}
   - component: {fileID: 199317037790101498}
   m_Layer: 0
-  m_Name: pumpkin particle system
+  m_Name: hit particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +42,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
+--- !u!114 &114561468904243550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1946958496376568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b517f29dcd977c14bab3675ce8592e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  system: {fileID: 198303891826363182}
+  materials:
+  - {fileID: 2100000, guid: 7aeb3bf6626586d4694477833c9f1872, type: 2}
+  - {fileID: 2100000, guid: eefd563a571e8e44e9a8e2062b2fcafa, type: 2}
+  - {fileID: 2100000, guid: e1bd556551cad4f4c9cb70edf44021a9, type: 2}
+  - {fileID: 2100000, guid: 215ee6bd40a4f964ea0bef9912280ec4, type: 2}
 --- !u!198 &198303891826363182
 ParticleSystem:
   m_ObjectHideFlags: 1
