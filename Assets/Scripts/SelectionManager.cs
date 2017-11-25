@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class SelectionManager : MonoBehaviour
 
 	private bool[] active = new bool[]{ false, false, false, false };
 
+	private List<int> inputIndeces = new List<int>();
+
 	private int count = 0;
 	private int lockedInCount = 0;
 
@@ -42,6 +45,16 @@ public class SelectionManager : MonoBehaviour
 		yield return new WaitForSeconds(transitionTime);
 		started = true;
 		fadeAnimator.enabled = false;
+	}
+
+	private IEnumerator FadeOut(float transitionTime, List<PlayerData> playersData)
+	{
+		var load = SceneManager.LoadSceneAsync("Main 1", LoadSceneMode.Additive);
+		load.allowSceneActivation = false;
+		yield return new WaitForSeconds(transitionTime);
+		load.allowSceneActivation = true;
+		yield return 0;
+		GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().InitRound(playersData);
 	}
 
 	private void OnLockIn()
@@ -79,7 +92,18 @@ public class SelectionManager : MonoBehaviour
 			yield return new WaitForSeconds(1);
 		}
 		field.text = "- Starting Match -";
-		// Load map
+		BeginRound();
+	}
+
+	private void BeginRound()
+	{
+		var data = new List<PlayerData>();
+		for(int i = 0; i < characters.Count; i++)
+		{
+			var playerData = new PlayerData(playerInputs[inputIndeces[i]], (int)characters[i].character, inputIndeces[i], characters[i].GetSounds());
+			data.Add(playerData);
+		}
+		StartCoroutine(FadeOut(1.0f, data));
 	}
 
 	private void Update()
@@ -90,6 +114,7 @@ public class SelectionManager : MonoBehaviour
 			if(!active[i])
 				if(Input.GetButtonDown(playerInputs[i].Jump))
 				{
+					inputIndeces[i] = count;
 					var selection = Instantiate(characterSelectionPrefab, parent);
 					var positions = new SelectionPositions(++count);
 					characters.Add(selection.GetComponent<CharacterSelection>().Initialize(count - 1, playerInputs[i], OnLockIn));

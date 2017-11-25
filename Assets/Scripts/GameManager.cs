@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 	private List<PlayerInputConfiguration> inputs;
 	[SerializeField]
 	private GameObject playerPrefab;
+	[SerializeField]
+	private WinScreen winScreen;
 
 	public List<Player> players = new List<Player>();
 
@@ -18,8 +20,9 @@ public class GameManager : MonoBehaviour
 		foreach(var input in inputs)
 			players.Add(Instantiate(playerPrefab).GetComponent<Player>().Init(input, null));
 	}
-	private void InitRound()
+	public void InitRound(List<PlayerData> playersData)
 	{
-		
+		foreach(var data in playersData)
+			players.Add(Instantiate(playerPrefab).GetComponent<Player>().Init(null, null));
 	}
 }

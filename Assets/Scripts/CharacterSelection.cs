@@ -40,6 +40,8 @@ public class CharacterSelection : MonoBehaviour
 	private bool lockedIn = false;
 
 	public Character character { get; private set; }
+	public PlayerSounds GetSounds() =>
+		playerSounds[selectedPlayer];
 
 	private Action lockInCallback;
 
