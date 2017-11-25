@@ -51,6 +51,12 @@ public class PlayerAnimator : MonoBehaviour
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    public void SetCharacter(int characterID)
+    {
+        m_Animator.SetFloat("PlayerID", characterID);
+        UpdateAnimator();
+    }
+
     public void LookLeft()
     {
         m_SpriteRenderer.flipX = true;
