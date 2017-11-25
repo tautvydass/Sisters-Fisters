@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Player_Jump
+  m_Name: Player_Air_2
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,17 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: b21f69182c0d8194dbd57332f6d1f490, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: cae17d2b8151d284893933f22c8c705b, type: 3}
-    - time: 2
-      value: {fileID: 21300000, guid: 238e87d65fecf9c4ba24ab214ea76994, type: 3}
+      value: {fileID: 21300000, guid: d5cfca59ca43f74449b9ed351aa3b7ac, type: 3}
     - time: 3
-      value: {fileID: 21300000, guid: 0c21417df00c4384f853ba1684248700, type: 3}
-    - time: 4
-      value: {fileID: 21300000, guid: 5dbe92ece55e61840bc3ef8390a29a0d, type: 3}
-    - time: 5
-      value: {fileID: 21300000, guid: 2a6c966459daa16449f95bc05f428985, type: 3}
+      value: {fileID: 21300000, guid: d5cfca59ca43f74449b9ed351aa3b7ac, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -49,18 +41,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: b21f69182c0d8194dbd57332f6d1f490, type: 3}
-    - {fileID: 21300000, guid: cae17d2b8151d284893933f22c8c705b, type: 3}
-    - {fileID: 21300000, guid: 238e87d65fecf9c4ba24ab214ea76994, type: 3}
-    - {fileID: 21300000, guid: 0c21417df00c4384f853ba1684248700, type: 3}
-    - {fileID: 21300000, guid: 5dbe92ece55e61840bc3ef8390a29a0d, type: 3}
-    - {fileID: 21300000, guid: 2a6c966459daa16449f95bc05f428985, type: 3}
+    - {fileID: 21300000, guid: d5cfca59ca43f74449b9ed351aa3b7ac, type: 3}
+    - {fileID: 21300000, guid: d5cfca59ca43f74449b9ed351aa3b7ac, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 6
+    m_StopTime: 4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -80,11 +68,4 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events:
-  - time: 5
-    functionName: JumpEndCallback
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

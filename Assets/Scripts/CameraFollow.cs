@@ -43,7 +43,7 @@ public class CameraFollow : MonoBehaviour
         m_DesiredPos = new Vector3(players.Select(p => p.x).Sum() / players.Length, players.Select(p => p.y).Sum() / players.Length, -10);
 
         m_DesiredSize = xDiff > yDiff ? xDiff / 2  : yDiff / 2;
-        m_DesiredSize += 2;
+        m_DesiredSize += 5;
         m_DesiredSize = m_DesiredSize > 5 ? m_DesiredSize : 5;
 
         PerformLerp();
