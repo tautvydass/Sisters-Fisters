@@ -141,3 +141,4 @@ MonoBehaviour:
     type: 2}
   parent: {fileID: 0}
   joinText: {fileID: 0}
+  fadeAnimator: {fileID: 0}

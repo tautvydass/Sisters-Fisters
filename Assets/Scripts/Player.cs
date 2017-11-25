@@ -14,13 +14,20 @@ public class Player : MonoBehaviour
 
     public PlayerInputConfiguration PlayerInputConfiguration { get; private set; }
 
+    public float fistingCooldown = 0.5f;
     public float speed = 10;
     public float jumpForce = 4;
-    public float FistForce { get; private set; }
+    public float fistForce = 3;
     public Rigidbody2D Rigidbody { get; private set; }
     public PlayerAnimator PlayerAnimator { get; private set; }
+    
+    [SerializeField]
+    private Transform fist;
+    [SerializeField]
+    private float fistRange;
 
     private bool receiveInput = false;
+    private bool readyToFist = true;
 
     private Movement movement = Movement.Idle;
 
@@ -99,6 +106,8 @@ public class Player : MonoBehaviour
     private void OnFistEnd()
     {
         // Add damage here
+        readyToFist = true;
+        PlayerAnimator.IsFisting = false;
     }
 
     private void OnJumpEnd()
@@ -134,7 +143,12 @@ public class Player : MonoBehaviour
         
     private void CheckFist()
     {
-
+        if(!readyToFist) return;
+        if(Input.GetButtonDown(PlayerInputConfiguration.Fist))
+        {
+            readyToFist = false;
+            PlayerAnimator.IsFisting = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
