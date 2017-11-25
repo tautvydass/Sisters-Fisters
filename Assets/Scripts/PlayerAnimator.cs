@@ -14,6 +14,7 @@ public class PlayerAnimator : MonoBehaviour
     public event Action JumpEnd;
 
     private bool m_IsJumping;
+    private float m_StartingXScale;
 
     private bool m_IsFisting;
     public bool IsFisting
@@ -49,6 +50,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         m_Animator = GetComponent<Animator>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_StartingXScale = transform.localScale.x;
     }
 
     public void SetCharacter(int characterID)
@@ -59,12 +61,15 @@ public class PlayerAnimator : MonoBehaviour
 
     public void LookLeft()
     {
-        m_SpriteRenderer.flipX = true;
+        //m_SpriteRenderer.flipX = true;
+        transform.localScale = new Vector3(-m_StartingXScale, transform.localScale.y, transform.localScale.z);
     }
 
     public void LookRight()
     {
-        m_SpriteRenderer.flipX = false;
+        //m_SpriteRenderer.flipX = false;
+        transform.localScale = new Vector3(m_StartingXScale, transform.localScale.y, transform.localScale.z);
+
     }
 
     public void Jump()

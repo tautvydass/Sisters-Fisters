@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,9 +19,15 @@ public class Player : MonoBehaviour
     public float speed = 10;
     public float jumpForce = 4;
     public float fistForce = 3;
+    public Vector3 fistForceDirectionModifier = new Vector3(0, 0.1f, 0);
+
+    public float Lives = 3;
+    public float Health = 0;
+
     public Rigidbody2D Rigidbody { get; private set; }
     public PlayerAnimator PlayerAnimator { get; private set; }
     public PlayerSounds PlayerSounds { get; private set; }
+    public GameManager GameManager { get; private set; }
 
     [SerializeField]
     private Transform fist;
@@ -48,7 +55,20 @@ public class Player : MonoBehaviour
         PlayerAnimator.FistEnd += OnFistEnd;
         PlayerAnimator.JumpEnd += OnJumpEnd;
 
+        var go = GameObject.FindGameObjectWithTag("GameController");
+        if (go)
+            GameManager = go.GetComponent<GameManager>();
+        else
+            Debug.LogError("GameManager does not exists or object with tag 'GameController' was not found. " +
+                "Player will not use any functionality related to game manager");
+
         return this;
+    }
+
+    public void ApplyKnockback(Vector3 pos)
+    {
+        var direction = (transform.position.x > pos.x) ? Vector3.right : Vector3.left;
+        Rigidbody.AddForce((direction + fistForceDirectionModifier) * fistForce * (1 + (Health / 100)), ForceMode2D.Impulse);
     }
 
     private void Update()
@@ -72,7 +92,7 @@ public class Player : MonoBehaviour
     private void CheckHorizontal()
     {
         var value = Input.GetAxis(PlayerInputConfiguration.Horizontal);
-        
+
         if (Mathf.Abs(value) != 1)
         {
             velocityFromMovement = Vector2.zero;
@@ -100,7 +120,14 @@ public class Player : MonoBehaviour
 
     private void OnFistEnd()
     {
-        // Add damage here
+        var hit = Physics2D.CircleCast(fist.transform.position, 0.5f, new Vector2(transform.localScale.x, 0), 0.5f);
+        if (hit && hit.collider && hit.collider.GetComponent<Player>())
+        {
+            var player = hit.collider.GetComponent<Player>();
+            player.Health += 10;
+            player.ApplyKnockback(transform.position);
+        }
+
         readyToFist = true;
         PlayerAnimator.IsFisting = false;
     }
@@ -138,13 +165,16 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag != "Ground") return;
-        if (colliders.Contains(collider)) return;
-
-        colliders.Add(collider);
+        if (collider.tag == "Ground" && !colliders.Contains(collider))
+        {
+            colliders.Add(collider);
+        }
     }
     private void OnTriggerExit2D(Collider2D collider)
     {
-        colliders.Remove(collider);
+        if (collider.tag == "Ground")
+        {
+            colliders.Remove(collider);
+        }
     }
 }
