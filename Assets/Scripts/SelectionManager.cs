@@ -24,7 +24,7 @@ public class SelectionManager : MonoBehaviour
 
 	private bool[] active = new bool[]{ false, false, false, false };
 
-	private List<int> inputIndeces = new List<int>();
+	private int[] inputIndeces = new int[4]{ -1, -1, -1, -1 };
 
 	private int count = 0;
 	private int lockedInCount = 0;
@@ -49,10 +49,12 @@ public class SelectionManager : MonoBehaviour
 
 	private IEnumerator LoadArena(float transitionTime, List<PlayerData> playersData)
 	{
-		var load = SceneManager.LoadSceneAsync("Main 1", LoadSceneMode.Additive);
-		load.allowSceneActivation = false;
+		//var load = SceneManager.LoadSceneAsync("Main 1", LoadSceneMode.Additive);
+		//load.allowSceneActivation = false;
+		fadeAnimator.enabled = true;
+		fadeAnimator.SetTrigger("FadeOut");
 		yield return new WaitForSeconds(transitionTime);
-		load.allowSceneActivation = true;
+		//load.allowSceneActivation = true;
 		yield return 0;
 		GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().InitRound(playersData);
 	}
