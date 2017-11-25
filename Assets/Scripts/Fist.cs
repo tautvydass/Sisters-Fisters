@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Fist : MonoBehaviour
 {
-	public void Punch()
+	private bool punching = false;
+
+	public void Punch(Vector2 direction)
 	{
-		
+		if(punching) return;
+
+		punching = true;
+
+
 	}
 }
 	
