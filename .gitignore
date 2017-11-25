@@ -33,3 +33,5 @@ sysinfo.txt
 *.apk
 *.unitypackage
 **Thumbs.db
+**_Data/
+*.exe

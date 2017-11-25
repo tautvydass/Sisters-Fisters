@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Splash.unity
     guid: dc88356f7e6cdb14498b73ed698b53f2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Character Selection.unity
     guid: b780622084a3a0a45b3997ddf522798f
+  - enabled: 1
+    path: Assets/AnimationTest.unity
+    guid: f73fdf8f691d59b4dbe30f26bfd9c469
