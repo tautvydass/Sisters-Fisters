@@ -47,7 +47,7 @@ public class SelectionManager : MonoBehaviour
 		fadeAnimator.enabled = false;
 	}
 
-	private IEnumerator FadeOut(float transitionTime, List<PlayerData> playersData)
+	private IEnumerator LoadArena(float transitionTime, List<PlayerData> playersData)
 	{
 		var load = SceneManager.LoadSceneAsync("Main 1", LoadSceneMode.Additive);
 		load.allowSceneActivation = false;
@@ -103,7 +103,7 @@ public class SelectionManager : MonoBehaviour
 			var playerData = new PlayerData(playerInputs[inputIndeces[i]], (int)characters[i].character, inputIndeces[i], characters[i].GetSounds());
 			data.Add(playerData);
 		}
-		StartCoroutine(FadeOut(1.0f, data));
+		StartCoroutine(LoadArena(1.0f, data));
 	}
 
 	private void Update()
