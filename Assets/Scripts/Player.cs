@@ -106,8 +106,15 @@ public class Player : MonoBehaviour
         Rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    private void Move(float direction) =>
-        Rigidbody.velocity += Vector2.right * direction * speed;
+    private void Move(float direction)
+    {
+        var velocity = Rigidbody.velocity;
+        if(movement != Movement.Idle)
+            if(Mathf.Abs(velocity.x) < speed / 3)
+                return;
+        velocity += Vector2.right * direction * speed;
+        Rigidbody.velocity = new Vector2(Mathf.Clamp(velocity.x, -speed, speed), velocity.y);
+    }
 
     private void CheckFistDirection() =>
         fistDirection = (new Vector2(Input.GetAxis(PlayerInputConfiguration.LookHorizontal), -Input.GetAxis(PlayerInputConfiguration.LookVertical))).normalized;
