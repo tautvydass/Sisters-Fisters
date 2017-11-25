@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour
 {
+	public enum Character
+	{
+		Tautvydas = 0,
+		Aurimas,
+		Vaidas,
+		Justas
+	}
 	[SerializeField]
 	private List<Image> players;
 	[SerializeField]
@@ -30,6 +37,8 @@ public class CharacterSelection : MonoBehaviour
 	private bool active = false;
 	private bool selected = false;
 	private bool lockedIn = false;
+
+	public Character character { get; private set; }
 
 	public void SetPosition(Vector2 position)
 	{
@@ -110,6 +119,7 @@ public class CharacterSelection : MonoBehaviour
 		infoText.color += new Color(0, 0, 0, 1);
 		DisablePlayers();
 		LockInSound();
+		character = (Character)selectedPlayer;
 	}
 	private void LockInSound()
 	{
