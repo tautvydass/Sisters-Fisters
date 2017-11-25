@@ -22,7 +22,7 @@ public class CameraFollow : MonoBehaviour
             Debug.LogError("No GameManager found, game manager should have 'GameController' tag. Camera follow will be ignored.");
     }
 
-    void LateUpdate()
+    void Update()
     {
         if (!m_GameManager)
             return;

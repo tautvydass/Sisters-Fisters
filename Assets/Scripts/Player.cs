@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public float fistForce = 3;
     public Rigidbody2D Rigidbody { get; private set; }
     public PlayerAnimator PlayerAnimator { get; private set; }
-    
+
     [SerializeField]
     private Transform fist;
     [SerializeField]
@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private List<Collider2D> colliders = new List<Collider2D>();
 
     private Vector2 fistDirection = Vector2.zero;
+    private Vector2 velocityFromMovement = Vector2.zero;
 
     public Player Init(PlayerInputConfiguration input)
     {
@@ -46,6 +47,13 @@ public class Player : MonoBehaviour
         PlayerAnimator.JumpEnd += OnJumpEnd;
 
         return this;
+    }
+
+    private void Update()
+    {
+        // Apply movement velocity manually
+        transform.localPosition += new Vector3(velocityFromMovement.x, 0, 0) * Time.deltaTime; // This is not smooth when going into walls
+        //Rigidbody.position += new Vector2(velocityFromMovement.x, 0) * Time.deltaTime; // This one is not so smooth with camera movement
     }
 
     private void LateUpdate()
@@ -62,6 +70,16 @@ public class Player : MonoBehaviour
     private void CheckHorizontal()
     {
         var value = Input.GetAxis(PlayerInputConfiguration.Horizontal);
+        /*
+        if (Mathf.Abs(value) != 1)
+            velocityFromMovement = Vector2.zero;
+        else
+        {
+            int direction = (value > 0) ? 1 : -1;
+            velocityFromMovement += Vector2.right * speed * direction;
+        }
+        */
+        
         if (Mathf.Abs(value) != 1)
         {
             if (movement == Movement.Idle) return;
@@ -117,12 +135,13 @@ public class Player : MonoBehaviour
 
     private void Move(float direction)
     {
-        var velocity = Rigidbody.velocity;
-        if(movement != Movement.Idle)
-            if(Mathf.Abs(velocity.x) < speed / 3)
+        velocityFromMovement = Rigidbody.velocity;
+        if (movement != Movement.Idle)
+            if (Mathf.Abs(velocityFromMovement.x) < speed / 3)
                 return;
-        velocity += Vector2.right * direction * speed;
-        Rigidbody.velocity = new Vector2(Mathf.Clamp(velocity.x, -speed, speed), velocity.y);
+        velocityFromMovement += Vector2.right * direction * speed;
+
+        //Rigidbody.velocity = new Vector2(Mathf.Clamp(velocity.x, -speed, speed), velocity.y);
     }
 
     private void CheckFistDirection() =>
@@ -140,11 +159,11 @@ public class Player : MonoBehaviour
                 // Set some variables that it is jumping so movement becomes disabled
             }
     }
-        
+
     private void CheckFist()
     {
-        if(!readyToFist) return;
-        if(Input.GetButtonDown(PlayerInputConfiguration.Fist))
+        if (!readyToFist) return;
+        if (Input.GetButtonDown(PlayerInputConfiguration.Fist))
         {
             readyToFist = false;
             PlayerAnimator.IsFisting = true;
