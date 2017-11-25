@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
         receiveInput = true;
         Rigidbody = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<PlayerAnimator>();
+
+        PlayerAnimator.FistEnd += OnFistEnd;
+        PlayerAnimator.JumpEnd += OnJumpEnd;
+
         return this;
     }
 
@@ -92,6 +96,16 @@ public class Player : MonoBehaviour
             PlayerAnimator.LookLeft();
     }
 
+    private void OnFistEnd()
+    {
+        // Add damage here
+    }
+
+    private void OnJumpEnd()
+    {
+        Rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+
     private void Move(float direction) =>
         Rigidbody.velocity += Vector2.right * direction * speed;
 
@@ -105,10 +119,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown(PlayerInputConfiguration.Jump))
             if (IsGrounded())
-                Jump();
+            {
+                PlayerAnimator.Jump();
+                // Set some variables that it is jumping so movement becomes disabled
+            }
     }
-    private void Jump() =>
-        Rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        
     private void CheckFist()
     {
 

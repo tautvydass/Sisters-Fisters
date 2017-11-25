@@ -100,6 +100,7 @@ public class PlayerAnimator : MonoBehaviour
             CurrentAnimState = AnimState.Running;
 
         m_Animator.SetFloat("State", (int)CurrentAnimState);
+        m_Animator.SetInteger("IntState", (int)CurrentAnimState);
     }
 
     public enum AnimState
