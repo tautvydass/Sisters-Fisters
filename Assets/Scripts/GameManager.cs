@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private GameObject playerPrefab;
 
-	private List<Player> players = new List<Player>();
+	public List<Player> players = new List<Player>();
 
 	public int PlayerCount { get; private set; }
 
