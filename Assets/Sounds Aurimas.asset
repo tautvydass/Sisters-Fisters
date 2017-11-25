@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdb0f3e5e49b384bae786693ca9b3ba, type: 3}
+  m_Name: Sounds Aurimas
+  m_EditorClassIdentifier: 
+  selection: {fileID: 8300000, guid: b6ed915de76a231409468fb2de7904de, type: 3}
+  jump: {fileID: 8300000, guid: bbee72d42f452044c949d950498090ac, type: 3}
+  hit: {fileID: 8300000, guid: c704587007a01714f857742a976dca97, type: 3}
+  getHit: {fileID: 8300000, guid: 00b53117ab25fd241a013fcf064092b4, type: 3}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdb0f3e5e49b384bae786693ca9b3ba, type: 3}
+  m_Name: Sounds Vaidas
+  m_EditorClassIdentifier: 
+  selection: {fileID: 8300000, guid: 56721d23c99377d4e8949c395c806780, type: 3}
+  jump: {fileID: 8300000, guid: bc0d9ab02d2ddea49ab0583042cb3cfa, type: 3}
+  hit: {fileID: 8300000, guid: 92e951792a1ce5a4c9759e737d464745, type: 3}
+  getHit: {fileID: 8300000, guid: be74215335faee249af55a2aaa41b267, type: 3}

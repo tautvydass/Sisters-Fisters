@@ -415,7 +415,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: af416f3b72b19ee4e9b203d72070eb6b, type: 3}
   - {fileID: 8300000, guid: b6ed915de76a231409468fb2de7904de, type: 3}
   - {fileID: 8300000, guid: 56721d23c99377d4e8949c395c806780, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: b5cd2cc0e006e7f43968e83512b58455, type: 3}
   infoText: {fileID: 114017613904963870}
   joinClip: {fileID: 8300000, guid: 3f79c27502d2b1547be6eea02b79ed2a, type: 3}
   selectClips:
