@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator m_Animator;
+    private SpriteRenderer m_SpriteRenderer;
 
     public AnimState CurrentAnimState;
 
@@ -47,16 +48,17 @@ public class PlayerAnimator : MonoBehaviour
     void Start()
     {
         m_Animator = GetComponent<Animator>();
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void LookLeft()
     {
-        transform.localScale = new Vector3(-1, 1, 1);
+        m_SpriteRenderer.flipX = true;
     }
 
     public void LookRight()
     {
-        transform.localScale = new Vector3(1, 1, 1);
+        m_SpriteRenderer.flipX = false;
     }
 
     public void Jump()
