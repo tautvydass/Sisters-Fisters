@@ -8,9 +8,9 @@ public class CharacterSelection : MonoBehaviour
 	[SerializeField]
 	private List<Image> players;
 	[SerializeField]
-	private Color selected;
+	private Color selectedColor;
 	[SerializeField]
-	private Color backgorund;
+	private Color backgorundColor;
 	[SerializeField]
 	private Image text;
 	[SerializeField]
@@ -23,13 +23,19 @@ public class CharacterSelection : MonoBehaviour
 	private PlayerInputConfiguration input;
 	private int selectedPlayer;
 	private bool active = false;
+	private bool selected = false;
+
+	public void SetPosition(Vector2 position)
+	{
+		GetComponent<RectTransform>().localPosition = position;
+	}
 
 	private void Initialize(int playerIndex, PlayerInputConfiguration input)
 	{
 		text.sprite = playerTexts[selectedPlayer];
 		selectedPlayer = Random.Range(0, 4);
 		Select();
-		SelectionSound();
+		//SelectionSound();
 		active = true;
 		this.input = input;
 	}
@@ -38,9 +44,9 @@ public class CharacterSelection : MonoBehaviour
 	{
 		for(int i = 0; i < players.Count; i++)
 			if(i != selectedPlayer)
-				players[i].color = backgorund;
+				players[i].color = backgorundColor;
 			else
-				players[i].color = selected;
+				players[i].color = selectedColor;
 	}
 
 	private void UpdateSelection(int direction)
@@ -48,14 +54,33 @@ public class CharacterSelection : MonoBehaviour
 		selectedPlayer += direction;
 		selectedPlayer %= players.Count;
 		Select();
-		SelectionSound();
+		//SelectionSound();
 	}
 
 	private void Update()
 	{
 		if(!active) return;
 
+		var selection = Input.GetAxis(input.Select);
+		
+		if(Mathf.Abs(selection) != 1)
+		{
+			if(selected) selected = false;
+		}
+		else if(selection == 1)
+		{
+			if(selected) return;
 
+			UpdateSelection(1);
+			selected = true;
+		}
+		else if(selection == -1)
+		{
+			if(selected) return;
+
+			UpdateSelection(-1);
+			selected = true;
+		}
 	}
 
 	private void SelectionSound()
