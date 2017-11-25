@@ -45,7 +45,12 @@ public class Player : MonoBehaviour
 		CheckFistDirection();
 		CheckJump();
 		CheckFist();
+<<<<<<< Updated upstream
+=======
         ApplyAnimations();
+
+		Debug.DrawLine(transform.position, transform.position + (Vector3)fistDirection * 3, Color.red);
+>>>>>>> Stashed changes
 	}
 
     private void CheckHorizontal()
