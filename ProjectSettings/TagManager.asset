@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - CSManager
+  - TManager
+  - SManager
   layers:
   - Default
   - TransparentFX

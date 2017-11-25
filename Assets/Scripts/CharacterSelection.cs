@@ -17,27 +17,35 @@ public class CharacterSelection : MonoBehaviour
 	private List<Sprite> playerTexts;
 	[SerializeField]
 	private List<AudioClip> selectionClips;
-	[SerializeField]
 	private AudioSource audioSource;
+	[SerializeField]
+	private Text infoText;
+	[SerializeField]
+	private AudioClip joinClip;
+	[SerializeField]
+	private List<AudioClip> selectClips;
 
 	private PlayerInputConfiguration input;
 	private int selectedPlayer;
 	private bool active = false;
 	private bool selected = false;
+	private bool lockedIn = false;
 
 	public void SetPosition(Vector2 position)
 	{
 		GetComponent<RectTransform>().localPosition = position;
 	}
 
-	private void Initialize(int playerIndex, PlayerInputConfiguration input)
+	public CharacterSelection Initialize(int playerIndex, PlayerInputConfiguration input)
 	{
-		text.sprite = playerTexts[selectedPlayer];
+		text.sprite = playerTexts[playerIndex];
 		selectedPlayer = Random.Range(0, 4);
 		Select();
-		//SelectionSound();
 		active = true;
 		this.input = input;
+		audioSource = GameObject.FindGameObjectWithTag("CSManager").GetComponent<AudioSource>();
+		audioSource.PlayOneShot(joinClip, 1f);
+		return this;
 	}
 
 	private void Select()
@@ -52,16 +60,22 @@ public class CharacterSelection : MonoBehaviour
 	private void UpdateSelection(int direction)
 	{
 		selectedPlayer += direction;
-		selectedPlayer %= players.Count;
+		if(selectedPlayer == -1)
+			selectedPlayer = 3;
+		else if(selectedPlayer == 4)
+			selectedPlayer = 0;
 		Select();
-		//SelectionSound();
+		SelectionSound();
 	}
 
 	private void Update()
 	{
 		if(!active) return;
+		if(lockedIn) return;
 
 		var selection = Input.GetAxis(input.Select);
+
+		if(Input.GetButtonDown(input.Jump)) LockIn();
 		
 		if(Mathf.Abs(selection) != 1)
 		{
@@ -85,6 +99,32 @@ public class CharacterSelection : MonoBehaviour
 
 	private void SelectionSound()
 	{
-		audioSource.PlayOneShot(selectionClips[selectedPlayer]);
+		audioSource.PlayOneShot(selectClips[Random.Range(0, selectClips.Count)], 0.8f);
+	}
+
+	private void LockIn()
+	{
+		infoText.text = "- Ready -";
+		infoText.GetComponent<Animator>().enabled = false;
+		lockedIn = true;
+		infoText.color += new Color(0, 0, 0, 1);
+		DisablePlayers();
+		LockInSound();
+	}
+	private void LockInSound()
+	{
+		audioSource.PlayOneShot(selectionClips[selectedPlayer], 0.8f);
+	}
+
+	private void DisablePlayers()
+	{
+		for(int i = 0; i < players.Count; i++)
+			if(i != selectedPlayer)
+				players[i].color -= new Color(0, 0, 0, 1);
+			else
+			{
+				var transf = players[i].GetComponent<RectTransform>();
+				transf.localPosition = new Vector2(-10, transf.localPosition.y);
+			}
 	}
 }

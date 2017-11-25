@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cc73c3475035d34f8b639f53f81151f, type: 3}
-  m_Name: Player 2 Configuration
+  m_Name: Player 3 Configuration
   m_EditorClassIdentifier: 
-  Horizontal: Player2Horizontal
-  LookHorizontal: Player2Horizontal
-  LookVertical: Player2Horizontal
-  Select: Player2Select
-  Jump: Player2Jump
-  Fist: Player2Fist
+  Horizontal: Player3Horizontal
+  LookHorizontal: 
+  LookVertical: 
+  Select: Player3Select
+  Jump: Player3Jump
+  Fist: Player3Fist

@@ -14,5 +14,6 @@ MonoBehaviour:
   Horizontal: Player1Horizontal
   LookHorizontal: Player1Horizontal
   LookVertical: Player1Horizontal
+  Select: Player1Select
   Jump: Player1Jump
   Fist: Player1Fist

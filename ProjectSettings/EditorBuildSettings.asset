@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Transition Manager.unity
+    guid: cf2d149777ed2f44ba0a592350339bee
+  - enabled: 1
     path: Assets/Splash.unity
     guid: dc88356f7e6cdb14498b73ed698b53f2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Character Selection.unity
     guid: b780622084a3a0a45b3997ddf522798f
   - enabled: 1
