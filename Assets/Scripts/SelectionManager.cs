@@ -78,6 +78,7 @@ public class SelectionManager : MonoBehaviour
 			field.text = $"- Match Starting In { i } -";
 			yield return new WaitForSeconds(1);
 		}
+		field.text = "- Starting Match -";
 		// Load map
 	}
 

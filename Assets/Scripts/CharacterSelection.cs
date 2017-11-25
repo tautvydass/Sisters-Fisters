@@ -24,7 +24,7 @@ public class CharacterSelection : MonoBehaviour
 	[SerializeField]
 	private List<Sprite> playerTexts;
 	[SerializeField]
-	private List<AudioClip> selectionClips;
+	private List<PlayerSounds> playerSounds;
 	private AudioSource audioSource;
 	[SerializeField]
 	private Text infoText;
@@ -128,7 +128,7 @@ public class CharacterSelection : MonoBehaviour
 	}
 	private void LockInSound()
 	{
-		audioSource.PlayOneShot(selectionClips[selectedPlayer], 0.8f);
+		audioSource.PlayOneShot(playerSounds[selectedPlayer].selection, 0.8f);
 	}
 
 	private void DisablePlayers()

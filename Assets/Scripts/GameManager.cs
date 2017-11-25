@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		foreach(var input in inputs)
-			players.Add(Instantiate(playerPrefab).GetComponent<Player>().Init(input));
+			players.Add(Instantiate(playerPrefab).GetComponent<Player>().Init(input, null));
 	}
 	private void InitRound()
 	{

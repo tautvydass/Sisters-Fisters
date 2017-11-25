@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public float fistForce = 3;
     public Rigidbody2D Rigidbody { get; private set; }
     public PlayerAnimator PlayerAnimator { get; private set; }
+    public PlayerSounds PlayerSounds { get; private set; }
 
     [SerializeField]
     private Transform fist;
@@ -36,11 +37,12 @@ public class Player : MonoBehaviour
     private Vector2 fistDirection = Vector2.zero;
     private Vector2 velocityFromMovement = Vector2.zero;
 
-    public Player Init(PlayerInputConfiguration input)
+    public Player Init(PlayerInputConfiguration input, PlayerSounds sounds)
     {
         PlayerInputConfiguration = input;
         receiveInput = true;
         Rigidbody = GetComponent<Rigidbody2D>();
+        PlayerSounds = sounds;
         PlayerAnimator = GetComponent<PlayerAnimator>();
 
         PlayerAnimator.FistEnd += OnFistEnd;

@@ -411,11 +411,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 93cbdd74b211e534c9a8f0790d712397, type: 3}
   - {fileID: 21300000, guid: 1277e2427a0a0d24091945bda6af9a3a, type: 3}
   - {fileID: 21300000, guid: b39c193fe6310a443aed0adaf384d476, type: 3}
-  selectionClips:
-  - {fileID: 8300000, guid: af416f3b72b19ee4e9b203d72070eb6b, type: 3}
-  - {fileID: 8300000, guid: b6ed915de76a231409468fb2de7904de, type: 3}
-  - {fileID: 8300000, guid: 56721d23c99377d4e8949c395c806780, type: 3}
-  - {fileID: 8300000, guid: b5cd2cc0e006e7f43968e83512b58455, type: 3}
+  playerSounds:
+  - {fileID: 11400000, guid: c46a555b33f03f74581eeec3c4febb57, type: 2}
+  - {fileID: 11400000, guid: 97a977692b258b9479a954e777ed227c, type: 2}
+  - {fileID: 11400000, guid: 69b09016a4c10ff4d94a2f35fa266dd4, type: 2}
+  - {fileID: 11400000, guid: cc831b93220b70143aad284f7993e99f, type: 2}
   infoText: {fileID: 114017613904963870}
   joinClip: {fileID: 8300000, guid: 3f79c27502d2b1547be6eea02b79ed2a, type: 3}
   selectClips:
