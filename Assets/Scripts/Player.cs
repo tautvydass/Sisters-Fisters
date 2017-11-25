@@ -72,42 +72,17 @@ public class Player : MonoBehaviour
     private void CheckHorizontal()
     {
         var value = Input.GetAxis(PlayerInputConfiguration.Horizontal);
-        /*
-        if (Mathf.Abs(value) != 1)
-            velocityFromMovement = Vector2.zero;
-        else
-        {
-            int direction = (value > 0) ? 1 : -1;
-            velocityFromMovement += Vector2.right * speed * direction;
-        }
-        */
         
         if (Mathf.Abs(value) != 1)
         {
-            if (movement == Movement.Idle) return;
-            if (movement == Movement.Left)
-                Move(1);
-            else if (movement == Movement.Right)
-                Move(-1);
+            velocityFromMovement = Vector2.zero;
             movement = Movement.Idle;
         }
-        else if (value == 1)
+        else
         {
-            if (movement == Movement.Right) return;
-            if (movement == Movement.Left)
-                Move(2);
-            else if (movement == Movement.Idle)
-                Move(1);
-            movement = Movement.Right;
-        }
-        else if (value == -1)
-        {
-            if (movement == Movement.Left) return;
-            if (movement == Movement.Right)
-                Move(-2);
-            else if (movement == Movement.Idle)
-                Move(-1);
-            movement = Movement.Left;
+            int direction = (value > 0) ? 1 : -1;
+            movement = (value > 0) ? Movement.Right : Movement.Left;
+            velocityFromMovement = Vector2.right * speed * direction;
         }
     }
 
@@ -133,17 +108,6 @@ public class Player : MonoBehaviour
     private void OnJumpEnd()
     {
         Rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-    }
-
-    private void Move(float direction)
-    {
-        velocityFromMovement = Rigidbody.velocity;
-        if (movement != Movement.Idle)
-            if (Mathf.Abs(velocityFromMovement.x) < speed / 3)
-                return;
-        velocityFromMovement += Vector2.right * direction * speed;
-
-        //Rigidbody.velocity = new Vector2(Mathf.Clamp(velocity.x, -speed, speed), velocity.y);
     }
 
     private void CheckFistDirection() =>
