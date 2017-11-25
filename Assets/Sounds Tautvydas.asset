@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdb0f3e5e49b384bae786693ca9b3ba, type: 3}
+  m_Name: Sounds Tautvydas
+  m_EditorClassIdentifier: 
+  selection: {fileID: 8300000, guid: af416f3b72b19ee4e9b203d72070eb6b, type: 3}
+  jump: {fileID: 8300000, guid: 218f1f9fd0d8aad4caf999cfd23901fc, type: 3}
+  hit: {fileID: 8300000, guid: 8692b140caa232c41a1627cc95c94c0a, type: 3}
+  getHit: {fileID: 8300000, guid: e77b73076bf1d0c4bb24c09092a3d38e, type: 3}
