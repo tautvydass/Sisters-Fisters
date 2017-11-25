@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,40 +7,107 @@ public class PlayerAnimator : MonoBehaviour
 {
     private Animator m_Animator;
 
-    private const string AnimatorProp_IsMovingRight = "IsMovingRight";
-    private const string AnimatorProp_IsRunning = "IsRunning";
-    private const string AnimatorProp_IsInAir = "IsInAir";
+    public AnimState CurrentAnimState;
 
-    void Start ()
+    public event Action FistEnd;
+    public event Action JumpEnd;
+
+    private bool m_IsJumping;
+
+    private bool m_IsFisting;
+    public bool IsFisting
+    {
+        set
+        {
+            m_IsFisting = value;
+            UpdateAnimator();
+        }
+    }
+
+    private bool m_IsRunning;
+    public bool IsRunning
+    {
+        set
+        {
+            m_IsRunning = value;
+            UpdateAnimator();
+        }
+    }
+
+    private bool m_IsInAir;
+    public bool IsInAir
+    {
+        set
+        {
+            m_IsInAir = value;
+            UpdateAnimator();
+        }
+    }
+
+    void Start()
     {
         m_Animator = GetComponent<Animator>();
-	}
-	
+    }
+
     public void LookLeft()
     {
         transform.localScale = new Vector3(-1, 1, 1);
-        //m_Animator.SetBool(AnimatorProp_IsMovingRight, false);
     }
 
     public void LookRight()
     {
         transform.localScale = new Vector3(1, 1, 1);
-        // m_Animator.SetBool(AnimatorProp_IsMovingRight, true);
     }
 
-    public bool IsRunning
+    public void Jump()
     {
-        set
-        {
-            m_Animator.SetBool(AnimatorProp_IsRunning, value);
-        }
+        m_IsJumping = true;
+        UpdateAnimator();
     }
 
-    public bool IsInAir
+    /// <summary>
+    /// Called magically from animation event
+    /// </summary>
+    public void JumpEndCallback()
     {
-        set
-        {
-            m_Animator.SetBool(AnimatorProp_IsInAir, value);
-        }
+        JumpEnd?.Invoke();
+        m_IsJumping = false;
+        UpdateAnimator();
+    }
+
+    /// <summary>
+    /// Called magically from animation event
+    /// </summary>
+    private void FistEndCallback()
+    {
+        FistEnd?.Invoke();
+        IsFisting = false;
+        UpdateAnimator();
+    }
+
+    public void UpdateAnimator()
+    {
+        CurrentAnimState = AnimState.Idle;
+
+        // Execution order is important here because one animations have priority over each other
+        if (m_IsJumping)
+            CurrentAnimState = AnimState.Jumping;
+        else if (m_IsFisting)
+            CurrentAnimState = AnimState.Fisting;
+        else if (m_IsInAir)
+            CurrentAnimState = AnimState.Air;
+        else if (m_IsRunning)
+            CurrentAnimState = AnimState.Running;
+
+        m_Animator.SetFloat("State", (int)CurrentAnimState);
+    }
+
+    public enum AnimState
+    {
+        Idle = 0,
+        Running = 1,
+        Fisting = 2,
+        Jumping = 3,
+        Air = 4
     }
 }
