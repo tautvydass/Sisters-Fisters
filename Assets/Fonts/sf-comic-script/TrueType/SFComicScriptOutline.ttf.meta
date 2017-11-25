@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ca4a0f7eafd749442a3364f2ed0fb2b8
+timeCreated: 1511612844
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SF Comic Script Outline
+  fontNames:
+  - SF Comic Script Outline
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
