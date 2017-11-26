@@ -93,8 +93,11 @@ public class SelectionManager : MonoBehaviour
 			field.text = $"- Match Starting In { i } -";
 			yield return new WaitForSeconds(1);
 		}
-		field.text = "- Starting Match -";
-		BeginRound();
+		if(countdown)
+		{
+			field.text = "- Starting Match -";
+			BeginRound();
+		}
 	}
 
 	private void BeginRound()
