@@ -9,6 +9,7 @@ public class DeadZone : MonoBehaviour
         if (player)
         {
             player.Lives--;
+            player.RemoveHeart();
             if (player.Lives > 0)
             {
                 player.Health = 0;

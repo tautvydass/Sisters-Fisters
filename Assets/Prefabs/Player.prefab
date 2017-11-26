@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentAnimState: 0
+  playerNumber: {fileID: 4673053298679904}
 --- !u!114 &114764190138410982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6995275ce767edc469be7346fbb9cec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criticalChance: 0.1
+  criticalChance: 0.15
   fistingCooldown: 0.5
   speed: 15
   jumpForce: 8

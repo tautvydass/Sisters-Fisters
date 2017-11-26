@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioClip criticalHit;
 
+    private PlayerHUD playerHUD;
+
     
     public Player Init(PlayerData data, Vector3 spawnPoint, Sprite playerNumSprite)
     {
@@ -77,6 +79,8 @@ public class Player : MonoBehaviour
 
         audioSource = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>();
 
+        playerHUD = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().SetupPlayer(data.playerIndex);
+
         return this;
     }
 
@@ -89,6 +93,9 @@ public class Player : MonoBehaviour
         Rigidbody.AddForce((direction + fistForceDirectionModifier) * fistForce * (1 + (Health / 100)) * (critical ? 2 : 1), ForceMode2D.Impulse);
         audioSource.PlayOneShot(PlayerSounds.getHit, 0.8f);
     }
+
+    public void RemoveHeart() =>
+        playerHUD.RemoveHeart();
 
     private void Update()
     {

@@ -10,6 +10,7 @@ TagManager:
   - SManager
   - Game Manager
   - SpawningManager
+  - UIManager
   layers:
   - Default
   - TransparentFX
