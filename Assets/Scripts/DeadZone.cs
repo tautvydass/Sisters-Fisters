@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class DeadZone : MonoBehaviour
 {
@@ -16,6 +17,14 @@ public class DeadZone : MonoBehaviour
             else
             {
                 Destroy(player.gameObject);
+
+                var manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+                var alivePlayers = manager.players.Where(p => p == true);
+                if (alivePlayers.Count() == 1)
+                {
+                    var alivePlayer = alivePlayers.FirstOrDefault(p => p == true);
+                    manager.EndGame(alivePlayer.data.playerIndex, alivePlayer.data.characterIndex);
+                }
             }
         }
     }

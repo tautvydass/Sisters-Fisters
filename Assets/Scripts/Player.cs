@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     private Vector2 fistDirection = Vector2.zero;
     private Vector2 velocityFromMovement = Vector2.zero;
 
-    private PlayerData data;
+    public PlayerData data;
     
     public Player Init(PlayerData data, Vector3 spawnPoint, Sprite playerNumSprite)
     {
