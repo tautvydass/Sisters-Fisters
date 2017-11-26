@@ -49,10 +49,13 @@ public class CameraFollow : MonoBehaviour
         var maxY = players.Select(p => p.y).Max();
         var yDiff = maxY - minY;
 
-        m_DesiredPos = new Vector3(players.Select(p => p.x).Sum() / players.Length, players.Select(p => p.y).Sum() / players.Length, -10);
+        m_DesiredPos = new Vector3((maxX + minX) / 2, (maxY + minY) / 2, -10);
 
         m_DesiredSize = xDiff > yDiff ? xDiff / 2  : yDiff / 2;
-        m_DesiredSize += 1;
+        m_DesiredSize *= 9/16f;
+        m_DesiredSize += (m_DesiredSize < 10) ? (10 - m_DesiredSize) / 2 : 0;
+        m_DesiredSize += 2;
+        m_DesiredSize = m_DesiredSize > 5 ? m_DesiredSize : 5;
         m_DesiredSize = m_DesiredSize > 5 ? m_DesiredSize : 5;
 
         PerformLerp();
