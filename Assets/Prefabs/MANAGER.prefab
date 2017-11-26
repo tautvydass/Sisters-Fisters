@@ -108,7 +108,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -141,4 +141,5 @@ MonoBehaviour:
     type: 2}
   parent: {fileID: 0}
   joinText: {fileID: 0}
+  countdownColor: {r: 0, g: 0, b: 0, a: 0}
   fadeAnimator: {fileID: 0}

@@ -2,7 +2,7 @@
 
 public class DeadZone : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         var player = collision.collider.gameObject.GetComponent<Player>();
         if (player)
@@ -15,7 +15,7 @@ public class DeadZone : MonoBehaviour
             }
             else
             {
-                Destroy(player);
+                Destroy(player.gameObject);
             }
         }
     }
