@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
         Vector3[] players;
         try
         {
-            players = m_GameManager.players.Select(p => p.transform.position).ToArray();
+            players = m_GameManager.players.Where(p => p == true).Select(p => p.transform.position).ToArray();
         }
         catch(Exception ex)
         {
@@ -52,7 +52,7 @@ public class CameraFollow : MonoBehaviour
         m_DesiredPos = new Vector3(players.Select(p => p.x).Sum() / players.Length, players.Select(p => p.y).Sum() / players.Length, -10);
 
         m_DesiredSize = xDiff > yDiff ? xDiff / 2  : yDiff / 2;
-        m_DesiredSize += 5;
+        m_DesiredSize += 1;
         m_DesiredSize = m_DesiredSize > 5 ? m_DesiredSize : 5;
 
         PerformLerp();
