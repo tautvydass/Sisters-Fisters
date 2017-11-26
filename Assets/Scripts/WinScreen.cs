@@ -33,9 +33,9 @@ public class WinScreen : MonoBehaviour
 
 	private IEnumerator WaitForInput(Action victoryChantCallback)
 	{
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(1.0f);
 		victoryChantCallback();
-		yield return new WaitForSeconds(2.5f);
+		yield return new WaitForSeconds(1.5f);
 		info.enabled = true;
 		while(true)
 		{
