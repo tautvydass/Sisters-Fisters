@@ -38,6 +38,9 @@ public class CharacterSelection : MonoBehaviour
 	private bool active = false;
 	private bool selected = false;
 	private bool lockedIn = false;
+	[HideInInspector]
+	public int playerIndex;
+
 
 	public Character character { get; private set; }
 	public PlayerSounds GetSounds() =>
@@ -52,6 +55,7 @@ public class CharacterSelection : MonoBehaviour
 
 	public CharacterSelection Initialize(int playerIndex, PlayerInputConfiguration input, Action lockInCallback)
 	{
+		this.playerIndex = playerIndex;
 		text.sprite = playerTexts[playerIndex];
 		selectedPlayer = UnityEngine.Random.Range(0, 4);
 		Select();
