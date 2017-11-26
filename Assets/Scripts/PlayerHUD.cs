@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class PlayerHUD : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class PlayerHUD : MonoBehaviour
 	[SerializeField]
 	private Color disabledColor;
 
-	public PlayerHUD Init(int playerIndex)
+
+    [SerializeField]
+    private Text healthText;
+
+    public PlayerHUD Init(int playerIndex)
 	{
 		foreach(var heart in hearts)
 			heart.color = Properties.PLAYER_COLORS[playerIndex];
@@ -24,4 +29,9 @@ public class PlayerHUD : MonoBehaviour
 		hearts.Last().color = disabledColor;
 		hearts.Remove(hearts.Last());
 	}
+
+    public void DisplayHealth(float health)
+    {
+        healthText.text = ((int)health) + " %";
+    }
 }

@@ -92,10 +92,15 @@ public class Player : MonoBehaviour
         var direction = (transform.position.x > pos.x) ? Vector3.right : Vector3.left;
         Rigidbody.AddForce((direction + fistForceDirectionModifier) * fistForce * (1 + (Health / 100)) * (critical ? 2 : 1), ForceMode2D.Impulse);
         audioSource.PlayOneShot(PlayerSounds.getHit, 0.8f);
+
+        playerHUD.DisplayHealth(Health);
     }
 
-    public void RemoveHeart() =>
+    public void RemoveHeart()
+    {
         playerHUD.RemoveHeart();
+        playerHUD.DisplayHealth(0);
+    }
 
     private void Update()
     {
