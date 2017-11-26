@@ -32,7 +32,7 @@ public class WinScreen : MonoBehaviour
 
 	private IEnumerator WaitForInput()
 	{
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(2.5f);
 		info.enabled = true;
 		while(true)
 		{

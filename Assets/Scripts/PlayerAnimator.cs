@@ -15,6 +15,8 @@ public class PlayerAnimator : MonoBehaviour
 
     private bool m_IsJumping;
     private float m_StartingXScale;
+    [SerializeField]
+    private Transform playerNumber;
 
     private bool m_IsFisting;
     public bool IsFisting
@@ -62,12 +64,14 @@ public class PlayerAnimator : MonoBehaviour
     public void LookLeft()
     {
         //m_SpriteRenderer.flipX = true;
+        playerNumber.localScale = new Vector3(-1, 1, 1);
         transform.localScale = new Vector3(-m_StartingXScale, transform.localScale.y, transform.localScale.z);
     }
 
     public void LookRight()
     {
         //m_SpriteRenderer.flipX = false;
+        playerNumber.localScale = Vector3.one;
         transform.localScale = new Vector3(m_StartingXScale, transform.localScale.y, transform.localScale.z);
 
     }

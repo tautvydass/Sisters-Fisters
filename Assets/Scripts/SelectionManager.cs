@@ -36,7 +36,8 @@ public class SelectionManager : MonoBehaviour
 	{
 		characters = new List<CharacterSelection>();
 		defaultColor = joinText.GetComponent<Text>().color;
-		SceneManager.UnloadSceneAsync("Splash");
+		if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Splash"))
+			SceneManager.UnloadSceneAsync("Splash");
 		StartCoroutine(FadeIn(0.5f));
 	}
 

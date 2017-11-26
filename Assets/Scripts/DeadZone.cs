@@ -16,13 +16,13 @@ public class DeadZone : MonoBehaviour
             }
             else
             {
-                Destroy(player.gameObject);
-
                 var manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-                var alivePlayers = manager.players.Where(p => p == true);
-                if (alivePlayers.Count() == 1)
+                manager.players.Remove(player);
+                Destroy(player.gameObject);
+                var alivePlayers = manager.players.Count;
+                if (alivePlayers == 1)
                 {
-                    var alivePlayer = alivePlayers.FirstOrDefault(p => p == true);
+                    var alivePlayer = manager.players[0];
                     manager.EndGame(alivePlayer.data.playerIndex, alivePlayer.data.characterIndex);
                 }
             }

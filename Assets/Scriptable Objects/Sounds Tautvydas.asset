@@ -15,3 +15,5 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: 218f1f9fd0d8aad4caf999cfd23901fc, type: 3}
   hit: {fileID: 8300000, guid: 8692b140caa232c41a1627cc95c94c0a, type: 3}
   getHit: {fileID: 8300000, guid: e77b73076bf1d0c4bb24c09092a3d38e, type: 3}
+  punches:
+  - {fileID: 8300000, guid: 3ed141bbb6845ab49b3c77dfe8085918, type: 3}

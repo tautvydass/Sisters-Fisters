@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6995275ce767edc469be7346fbb9cec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  criticalChance: 0.1
   fistingCooldown: 0.5
   speed: 15
   jumpForce: 8
@@ -292,6 +293,8 @@ MonoBehaviour:
   fistRange: 0
   hitParticles: {fileID: 114292738459850578}
   playerNumRenderer: {fileID: 212241476305893092}
+  audioSource: {fileID: 0}
+  criticalHit: {fileID: 8300000, guid: 2e277983f00818943a0ef94aae520d86, type: 3}
 --- !u!198 &198593468965112354
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -352,7 +355,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1244879921
+  randomSeed: -1404641404
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -400,8 +403,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5
-      minScalar: 2
+      scalar: 6
+      minScalar: 3.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -504,8 +507,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.25
-      minScalar: 0.05
+      scalar: 0.6
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:

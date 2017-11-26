@@ -15,6 +15,6 @@ public class HitParticles : MonoBehaviour
 		return this;
 	}
 
-	public void Emit() =>
-		system.Emit(50);
+	public void Emit(int count) =>
+		system.Emit(count);
 }
