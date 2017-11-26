@@ -35,4 +35,9 @@ public class GameManager : MonoBehaviour
 		foreach(var player in players)
 			player.Enable();
 	}
+
+	public void EndGame(int playerIndex, int characterIndex)
+	{
+		winScreen.AnnounceWinner(playerIndex, characterIndex);
+	}
 }
