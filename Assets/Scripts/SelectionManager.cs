@@ -22,6 +22,11 @@ public class SelectionManager : MonoBehaviour
 	private Animator fadeAnimator;
 	private List<CharacterSelection> characters;
 
+	private List<string> maps = new List<string>(2){
+		"Vaidas/MapForest",
+		"Vaidas/MapCity"
+	};
+
 	private bool[] active = new bool[]{ false, false, false, false };
 
 	private int[] inputIndeces = new int[4]{ -1, -1, -1, -1 };
@@ -50,7 +55,7 @@ public class SelectionManager : MonoBehaviour
 
 	private IEnumerator LoadArena(float transitionTime, List<PlayerData> playersData)
 	{
-		var load = SceneManager.LoadSceneAsync("Vaidas/MapForest", LoadSceneMode.Additive);
+		var load = SceneManager.LoadSceneAsync(maps[Random.Range(0, 2)], LoadSceneMode.Additive);
 		load.allowSceneActivation = false;
 		fadeAnimator.enabled = true;
 		fadeAnimator.SetTrigger("FadeOut");
