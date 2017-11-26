@@ -46,7 +46,7 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         m_Animator = GetComponent<Animator>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();

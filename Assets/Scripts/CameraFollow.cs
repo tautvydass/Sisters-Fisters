@@ -26,8 +26,17 @@ public class CameraFollow : MonoBehaviour
     {
         if (!m_GameManager)
             return;
+        
+        Vector3[] players;
+        try
+        {
+            players = m_GameManager.players.Select(p => p.transform.position).ToArray();
+        }
+        catch(Exception ex)
+        {
+            return;
+        }
 
-        var players = m_GameManager.players.Select(p => p.transform.position).ToArray();
 
         if (players == null || players.Length <= 0)
             return;

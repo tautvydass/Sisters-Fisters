@@ -33,6 +33,10 @@ public class Player : MonoBehaviour
     private Transform fist;
     [SerializeField]
     private float fistRange;
+    [SerializeField]
+    private HitParticles hitParticles;
+    [SerializeField]
+    private SpriteRenderer playerNumRenderer;
 
     private bool receiveInput = false;
     private bool readyToFist = true;
@@ -44,26 +48,31 @@ public class Player : MonoBehaviour
     private Vector2 fistDirection = Vector2.zero;
     private Vector2 velocityFromMovement = Vector2.zero;
 
-    public Player Init(PlayerInputConfiguration input, PlayerSounds sounds)
+    private PlayerData data;
+
+    public Player Init(PlayerData data, Vector3 spawnPoint, Sprite playerNumSprite)
     {
-        PlayerInputConfiguration = input;
-        receiveInput = true;
+        this.data = data;
+        PlayerInputConfiguration = data.input;
         Rigidbody = GetComponent<Rigidbody2D>();
-        PlayerSounds = sounds;
+        PlayerSounds = data.sounds;
         PlayerAnimator = GetComponent<PlayerAnimator>();
 
         PlayerAnimator.FistEnd += OnFistEnd;
         PlayerAnimator.JumpEnd += OnJumpEnd;
 
-        var go = GameObject.FindGameObjectWithTag("GameController");
-        if (go)
-            GameManager = go.GetComponent<GameManager>();
-        else
-            Debug.LogError("GameManager does not exists or object with tag 'GameController' was not found. " +
-                "Player will not use any functionality related to game manager");
+        PlayerAnimator.SetCharacter(data.characterIndex);
+
+        playerNumRenderer.sprite = playerNumSprite;
+        transform.position = spawnPoint;
+
+        hitParticles.Init(data.characterIndex);
 
         return this;
     }
+
+    public void Enable() =>
+        receiveInput = true;
 
     public void ApplyKnockback(Vector3 pos)
     {
@@ -128,6 +137,7 @@ public class Player : MonoBehaviour
             player.ApplyKnockback(transform.position);
         }
 
+        hitParticles.Emit();
         readyToFist = true;
         PlayerAnimator.IsFisting = false;
     }

@@ -49,14 +49,14 @@ public class SelectionManager : MonoBehaviour
 
 	private IEnumerator LoadArena(float transitionTime, List<PlayerData> playersData)
 	{
-		//var load = SceneManager.LoadSceneAsync("Main 1", LoadSceneMode.Additive);
-		//load.allowSceneActivation = false;
+		var load = SceneManager.LoadSceneAsync("AnimationTest", LoadSceneMode.Additive);
+		load.allowSceneActivation = false;
 		fadeAnimator.enabled = true;
 		fadeAnimator.SetTrigger("FadeOut");
 		yield return new WaitForSeconds(transitionTime);
-		//load.allowSceneActivation = true;
+		load.allowSceneActivation = true;
 		yield return 0;
-		GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().InitRound(playersData);
+		GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().InitRound(playersData);
 	}
 
 	private void OnLockIn()
