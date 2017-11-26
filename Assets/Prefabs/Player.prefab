@@ -206,7 +206,7 @@ MonoBehaviour:
   speed: 15
   jumpForce: 8
   fistForce: 3
-  fistForceDirectionModifier: {x: 0, y: 0.5, z: 0}
+  fistForceDirectionModifier: {x: 0, y: 0.8, z: 0}
   Lives: 3
   Health: 0
   fist: {fileID: 4803593067637226}

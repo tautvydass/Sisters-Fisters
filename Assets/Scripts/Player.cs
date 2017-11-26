@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
         if (hit && hit.collider && hit.collider.GetComponent<Player>())
         {
             var player = hit.collider.GetComponent<Player>();
-            player.Health += 10;
+            player.Health += 10 + player.Health / 10;
             player.ApplyKnockback(transform.position);
         }
 
