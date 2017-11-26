@@ -132,6 +132,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void VictoryChant()
+    {
+        audioSource.PlayOneShot(PlayerSounds.victory, 1.0f);
+    }
+
     private void ApplyAnimations()
     {
         PlayerAnimator.IsRunning = movement != Movement.Idle;

@@ -24,7 +24,7 @@ public class DeadZone : MonoBehaviour
                 if (alivePlayers == 1)
                 {
                     var alivePlayer = manager.players[0];
-                    manager.EndGame(alivePlayer.data.playerIndex, alivePlayer.data.characterIndex);
+                    manager.EndGame(alivePlayer.data.playerIndex, alivePlayer.data.characterIndex, player.VictoryChant);
                 }
             }
         }

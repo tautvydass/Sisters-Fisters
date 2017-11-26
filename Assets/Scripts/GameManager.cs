@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,8 +37,8 @@ public class GameManager : MonoBehaviour
 			player.Enable();
 	}
 
-	public void EndGame(int playerIndex, int characterIndex)
+	public void EndGame(int playerIndex, int characterIndex, Action victoryChantCallback)
 	{
-		winScreen.AnnounceWinner(playerIndex, characterIndex);
+		winScreen.AnnounceWinner(playerIndex, characterIndex, victoryChantCallback);
 	}
 }

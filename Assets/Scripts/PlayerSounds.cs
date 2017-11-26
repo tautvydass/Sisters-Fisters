@@ -9,6 +9,7 @@ public class PlayerSounds : ScriptableObject
 	public AudioClip jump;
 	public AudioClip hit;
 	public AudioClip getHit;
+	public AudioClip victory;
 
 	public List<AudioClip> punches;
 }
