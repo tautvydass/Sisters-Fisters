@@ -87,7 +87,7 @@ public class SelectionManager : MonoBehaviour
 		var field = joinText.GetComponent<Text>();
 		field.color = countdownColor;
 		joinText.GetComponent<Animator>().enabled = false;
-		for(int i = 10; i > 0; i--)
+		for(int i = 5; i > 0; i--)
 		{
 			if(!countdown) break;
 			field.text = $"- Match Starting In { i } -";

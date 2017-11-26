@@ -26,11 +26,13 @@ public class GameManager : MonoBehaviour
 		for(int i = 0; i < playersData.Count; i++)
 			players.Add(Instantiate(playerPrefab).GetComponent<Player>().Init(playersData[i], spawnPoints[i].position, numSprites[playersData[i].playerIndex]));
 		SceneManager.UnloadSceneAsync("Character Selection");
+		StartCoroutine(FadeIn());
 	}
 
 	private IEnumerator FadeIn()
 	{
-
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(4.5f);
+		foreach(var player in players)
+			player.Enable();
 	}
 }
