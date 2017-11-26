@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 114437279168810632}
   - component: {fileID: 95484470579089742}
   m_Layer: 5
-  m_Name: GetReady-Fight-Canvas
+  m_Name: Ready-Fight_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
