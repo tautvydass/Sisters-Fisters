@@ -100,9 +100,10 @@ public class SelectionManager : MonoBehaviour
 	private void BeginRound()
 	{
 		var data = new List<PlayerData>();
-		for(int i = 0; i < characters.Count; i++)
+		for(int i = 0; i < 4; i++)
 		{
-			var playerData = new PlayerData(playerInputs[inputIndeces[i]], (int)characters[i].character, inputIndeces[i], characters[i].GetSounds());
+			if(inputIndeces[i] == -1) continue;
+			var playerData = new PlayerData(playerInputs[inputIndeces[i]], (int)characters[i].character, characters[i].playerIndex, characters[i].GetSounds());
 			data.Add(playerData);
 		}
 		StartCoroutine(LoadArena(1.0f, data));
@@ -116,15 +117,13 @@ public class SelectionManager : MonoBehaviour
 			if(!active[i])
 				if(Input.GetButtonDown(playerInputs[i].Jump))
 				{
-					inputIndeces[i] = count;
+					inputIndeces[count] = i;
 					var selection = Instantiate(characterSelectionPrefab, parent);
 					var positions = new SelectionPositions(++count);
 					characters.Add(selection.GetComponent<CharacterSelection>().Initialize(count - 1, playerInputs[i], OnLockIn));
 					for(int ind = 0; ind < characters.Count; ind++)
 						characters[ind].SetPosition(positions.positions[ind]);
 					active[i] = true;
-					if(count == 4)
-						joinText.SetActive(false);
 					OnJoined();
 				}
 	}

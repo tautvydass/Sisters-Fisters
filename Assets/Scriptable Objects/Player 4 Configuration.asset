@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Player 4 Configuration
   m_EditorClassIdentifier: 
   Horizontal: Player4Horizontal
-  LookHorizontal: 
-  LookVertical: 
+  LookHorizontal: Player4Horizontal
+  LookVertical: Player4Horizontal
   Select: Player4Select
   Jump: Player4Jump
   Fist: Player4Fist

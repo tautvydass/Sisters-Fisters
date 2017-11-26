@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     private Vector2 velocityFromMovement = Vector2.zero;
 
     private PlayerData data;
-
+    
     public Player Init(PlayerData data, Vector3 spawnPoint, Sprite playerNumSprite)
     {
         this.data = data;
