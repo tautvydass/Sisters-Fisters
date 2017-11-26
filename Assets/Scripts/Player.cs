@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     private HitParticles hitParticles;
     [SerializeField]
     private SpriteRenderer playerNumRenderer;
+    [SerializeField]
+    private AudioSource audioSource;
 
     private bool receiveInput = false;
     private bool readyToFist = true;
@@ -68,6 +70,8 @@ public class Player : MonoBehaviour
 
         hitParticles.Init(data.characterIndex);
 
+        audioSource = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>();
+
         return this;
     }
 
@@ -78,6 +82,7 @@ public class Player : MonoBehaviour
     {
         var direction = (transform.position.x > pos.x) ? Vector3.right : Vector3.left;
         Rigidbody.AddForce((direction + fistForceDirectionModifier) * fistForce * (1 + (Health / 100)), ForceMode2D.Impulse);
+        audioSource.PlayOneShot(PlayerSounds.getHit, 0.8f);
     }
 
     private void Update()
@@ -145,6 +150,7 @@ public class Player : MonoBehaviour
     private void OnJumpEnd()
     {
         Rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        audioSource.PlayOneShot(PlayerSounds.jump, 0.8f);
     }
 
     private void CheckFistDirection() =>
@@ -170,6 +176,7 @@ public class Player : MonoBehaviour
         {
             readyToFist = false;
             PlayerAnimator.IsFisting = true;
+            audioSource.PlayOneShot(PlayerSounds.hit, 0.8f);
         }
     }
 
