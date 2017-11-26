@@ -56,7 +56,8 @@ public class SelectionManager : MonoBehaviour
 		fadeAnimator.SetTrigger("FadeOut");
 		yield return new WaitForSeconds(transitionTime);
 		load.allowSceneActivation = true;
-		yield return 0;
+        yield return load;
+        yield return 0;
 		GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().InitRound(playersData);
 	}
 
