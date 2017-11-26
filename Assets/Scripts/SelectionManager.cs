@@ -49,7 +49,7 @@ public class SelectionManager : MonoBehaviour
 
 	private IEnumerator LoadArena(float transitionTime, List<PlayerData> playersData)
 	{
-		var load = SceneManager.LoadSceneAsync("AnimationTest", LoadSceneMode.Additive);
+		var load = SceneManager.LoadSceneAsync("Vaidas/MapForest", LoadSceneMode.Additive);
 		load.allowSceneActivation = false;
 		fadeAnimator.enabled = true;
 		fadeAnimator.SetTrigger("FadeOut");

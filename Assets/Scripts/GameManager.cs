@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
 	public void InitRound(List<PlayerData> playersData)
 	{
-		SceneManager.SetActiveScene(SceneManager.GetSceneByName("AnimationTest"));
+		SceneManager.SetActiveScene(SceneManager.GetSceneByName("MapForest"));
 		for(int i = 0; i < playersData.Count; i++)
 			players.Add(Instantiate(playerPrefab).GetComponent<Player>().Init(playersData[i], spawnPoints[i].position, numSprites[playersData[i].playerIndex]));
 		SceneManager.UnloadSceneAsync("Character Selection");
